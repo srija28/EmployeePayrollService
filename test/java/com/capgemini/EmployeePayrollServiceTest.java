@@ -1,6 +1,8 @@
 package com.capgemini;
 
 import java.util.Arrays;
+import java.util.List;
+
 import org.junit.*;
 
 import com.capgemini.EmployeePayrollService.IOService;
@@ -18,6 +20,9 @@ public class EmployeePayrollServiceTest {
 		employeePayrollService.writeEmployeePayrollData(IOService.FILE_IO);
 		employeePayrollService.printData(IOService.FILE_IO);
 		long entries = employeePayrollService.countEntries(IOService.FILE_IO);
+		Assert.assertEquals(3, entries);
+		List<EmployeePayrollData> employeeList = employeePayrollService.readData(IOService.FILE_IO);
+		System.out.println(employeeList);
 		Assert.assertEquals(3, entries);
 	}
 

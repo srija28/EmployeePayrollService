@@ -48,5 +48,11 @@ public class EmployeePayrollService {
 	public void printData(IOService ioService) {
 		new EmployeePayrollFileIOService().printEmployeePayrollData();
 	}
+	public List<EmployeePayrollData> readData(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO))
+			return new EmployeePayrollFileIOService().readEmployeePayrollData();
+		else
+			return null;
+	}
 
 }

@@ -35,5 +35,27 @@ public class EmployeePayrollFileIOService {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<EmployeePayrollData> readEmployeePayrollData() {
+		List<EmployeePayrollData> employeeList = new ArrayList<EmployeePayrollData>();
+		try {
+			Files.lines(new File(PAY_ROLL_FILE_NAME).toPath()).map(line -> line.trim()).forEach(line -> {
+				String data = line.toString();
+				String[] dataArr = data.split(",");
+				for (int i = 0; i < dataArr.length; i++) {
+					int id = Integer.parseInt(dataArr[i].replaceAll("ID = ", ""));
+					i++;
+					String name = dataArr[i].replaceAll("Name = ", "");
+					i++;
+					double salary = Double.parseDouble(dataArr[i].replaceAll("Salary = ", ""));
+					EmployeePayrollData employeePayrollData = new EmployeePayrollData(id, name, salary);
+					employeeList.add(employeePayrollData);
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return employeeList;
+	}
 
 }
