@@ -45,5 +45,8 @@ public class EmployeePayrollService {
 			return new EmployeePayrollFileIOService().countNoOfEntries();
 		return 0;
 	}
+	public void printData(IOService ioService) {
+		new EmployeePayrollFileIOService().printEmployeePayrollData();
+	}
 
 }
